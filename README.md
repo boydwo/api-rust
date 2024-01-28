@@ -1,6 +1,9 @@
 # Api in Rust
 
-`/api-rust
+**Architecture**
+
+````
+/api-rust
     Cargo.toml
     .env
     /src
@@ -13,4 +16,5 @@
             user_routes.rs
         /db
             mod.rs
-            connection.rs`
+            connection.rs```
+````
