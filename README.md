@@ -1,4 +1,7 @@
-# Api in Rust
+# Rust API
+
+That's simple user registration API
+
 
 **Project Architecture**
 
