@@ -1,33 +1,30 @@
 #![feature(proc_macro_hygiene, decl_macro)] // enable security macros
 
-use std::fmt::format;
+// enable marco from rocket
+#[macro_use] extern crate rocket;
 
-#[macro_use] // enable marco from rocket
-extern crate rocket;
+#[macro_use]
+extern crate diesel;
 
-// methods like controllers
+// import modules
+mod schema;
+mod db;
+mod routes;
+mod models;
+
+use dotenv::dotenv;
+use routes::user_routes::*;
+
 #[get("/")]
 fn index()->  &'static str {
     "Hello API Rocket!"
 }
 
-#[get("/hello/<name>")] 
-fn hello(name:String)-> String {
-    format!("Hello, {}", name)
-}
 
-#[get("/number/<number>")] 
-fn number(number: i32) -> String {
-    format!("this numer is {}", number)
-}
-
-#[get("/search?<query>&<typ>")] 
-fn search(query: String, typ: Option<String>) -> String {
-   match typ{
-    Some(t) => format!("Searching for '{}' (type:{})", query, t),
-    None => format!("Searching for '{}'(no type specified)", query)
-   }
-}
 fn main() {
-   rocket::ignite().mount("/", routes![index, hello, number, search]).launch();
+    dotenv().ok();
+
+   rocket::ignite().mount("/", routes![index,create])
+   .manage(db::connection::establish_connection()).launch();
+
 }

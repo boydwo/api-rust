@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  pgsql:
+    image: postgres:alpine
+    ports:
+      - '5432:5432'
+    container_name: 'pgsql'
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword
+      POSTGRES_DB: rust
