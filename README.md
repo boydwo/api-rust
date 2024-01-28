@@ -1,6 +1,6 @@
 # Api in Rust
 
-**Architecture**
+**Project Architecture**
 
 ````
 /api-rust
@@ -8,6 +8,7 @@
     .env
     /src
         main.rs
+        schema.rs
         /models
             mod.rs
             user.rs
@@ -16,5 +17,5 @@
             user_routes.rs
         /db
             mod.rs
-            connection.rs```
+            connection.rs
 ````
